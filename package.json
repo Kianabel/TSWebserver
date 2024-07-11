@@ -1,0 +1,28 @@
+{
+  "name": "tswebserver",
+  "version": "1.0.0",
+  "description": "A basic Webserver",
+  "main": "server.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kianabel/TSWebserver.git"
+  },
+  "author": "kianabel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kianabel/TSWebserver/issues"
+  },
+  "homepage": "https://github.com/Kianabel/TSWebserver#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.10",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
