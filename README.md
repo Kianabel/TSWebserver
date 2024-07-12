@@ -1,6 +1,6 @@
 # TypeScript Express Web Server
 
-lt with Express and TypeScript. It serves a static HTML file from the `public` directory.
+A singlethread WebServer written from "scratch" using TypeScript and Node.
 
 ## Content
 
@@ -45,4 +45,11 @@ npm run start
 
 ### 4. Important
 
-Please note that there is no postbuild script. The entry point of the website should always be in /TSWebserver/public.
+Type Shit
+
+
+## Next
+
+- SSL Support
+- File Hosting from a public dir
+- I want to look into multithreading
