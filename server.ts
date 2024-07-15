@@ -1,4 +1,5 @@
 import * as net from "net";
+import * as fs from "fs";
 
 export interface Request {
   protocol: string;
@@ -20,7 +21,8 @@ const PORT: number = 22222;
 const IP: string = "127.0.0.1";
 const BACKLOG: number = 521;
 
-const htmlbody: string = "<html><body><h1>Burgerking</h1></body></html>"; //body const can be parsed from file
+const htmlbody = fs.readFileSync("./public/index.html").toString() //converting entry html into string
+
 const responseHeaders = new Map<string, string>(); //html headers
 responseHeaders.set("Content-Type", "text/html");
 responseHeaders.set("Content-Length", htmlbody.length.toString());
