@@ -1,6 +1,6 @@
 # TypeScript Express Web Server
 
-A singlethread WebServer written from "scratch" using TypeScript and Node.
+A multi"thread" WebServer written from "scratch" using TypeScript and Node.
 
 ## Content
 
@@ -8,7 +8,7 @@ A singlethread WebServer written from "scratch" using TypeScript and Node.
   - [1. Clone the repository](#1-clone-the-repository)
   - [2. Install dependencies](#2-install-dependencies)
   - [3. Build and Start the Server](#3-build-and-start-the-server)
-  - [4. Important](#4-important)
+  - [4. Support](#4-support)
 
 ## Installation
 
@@ -43,13 +43,9 @@ npm run start
 ```
 
 
-### 4. Important
+### 4. Support
 
-Type Shit
-
-
-## Next
-
-- SSL Support
-- File Hosting from a public dir
-- I want to look into multithreading
+- static page hosting
+- Multithreading
+- Reloading
+- Das wars :C
