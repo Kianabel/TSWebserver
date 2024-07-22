@@ -22,6 +22,7 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
-    "net": "^1.0.2"
+    "net": "^1.0.2",
+    "workerpool": "^9.1.3"
   }
 }

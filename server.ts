@@ -1,5 +1,9 @@
 import * as net from "net";
 import * as fs from "fs";
+import * as workerpool from "workerpool";
+import Pool from "workerpool/types/Pool";
+
+const pool: Pool = workerpool.pool('./dist/worker.js');
 
 export interface Request {
   protocol: string;
@@ -21,7 +25,7 @@ const PORT: number = 22222;
 const IP: string = "127.0.0.1";
 const BACKLOG: number = 521;
 
-const getBody = (): Promise<string> => {    //get new file content
+const getBody = (): Promise<string> => {
   return new Promise((resolve, reject) => {
     fs.readFile("./public/index.html", (err, data) => {
       if (err) {
@@ -33,13 +37,6 @@ const getBody = (): Promise<string> => {    //get new file content
   });
 };
 
-const compileResponse = (r: Response): string => {
-  const headers = Array.from(r.headers)
-    .map((kv) => `${kv[0]}: ${kv[1]}`)
-    .join("\r\n");
-  return `${r.protocol} ${r.statusCode} ${r.status}\r\n${headers}\r\n\r\n${r.body}`;
-};
-
 net
   .createServer((socket) => {
     socket.on("data", async (buffer) => {
@@ -48,7 +45,7 @@ net
       try {
         const bodyHTML = await getBody();
 
-        const responseHeaders = new Map<string, string>(); //html headers
+        const responseHeaders = new Map<string, string>();
         responseHeaders.set("Content-Type", "text/html");
         responseHeaders.set("Content-Length", bodyHTML.length.toString());
 
@@ -60,7 +57,9 @@ net
           body: bodyHTML,
         };
 
-        socket.write(compileResponse(response));
+        const compiledResponse = await pool.exec('compileResponse', [response]);
+
+        socket.write(compiledResponse);
         socket.end();
       } catch (err) {
         console.error("Error reading file:", err);
