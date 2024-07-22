@@ -49,3 +49,9 @@ npm run start
 - Multithreading
 - Reloading
 - Das wars :C
+
+### 5. Next
+
+- Currently working on other file support .js/.css
+- Working on dymanic paths
+- React/Vue/etc. Support
