@@ -1,5 +1,4 @@
 import * as net from "net";
-import * as fs from "fs";
 import * as workerpool from "workerpool";
 import Pool from "workerpool/types/Pool";
 
@@ -25,28 +24,23 @@ const PORT: number = 22222;
 const IP: string = "127.0.0.1";
 const BACKLOG: number = 521;
 
-const getBody = (): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    fs.readFile("./public/index.html", (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data.toString());
-      }
-    });
-  });
-};
-
 net
   .createServer((socket) => {
     socket.on("data", async (buffer) => {
       const request = buffer.toString();
+      const [requestLine] = request.split("\r\n");
+      const [method, url] = requestLine.split(" ");
+
+      let filePath = './public' + url;
+      if (url === '/') {
+        filePath = './public/index.html';
+      }
 
       try {
-        const bodyHTML = await getBody();
+        const { data: bodyHTML, contentType } = await pool.exec('getFile', [filePath]);
 
         const responseHeaders = new Map<string, string>();
-        responseHeaders.set("Content-Type", "text/html");
+        responseHeaders.set("Content-Type", contentType);
         responseHeaders.set("Content-Length", bodyHTML.length.toString());
 
         const response: Response = {
@@ -63,7 +57,7 @@ net
         socket.end();
       } catch (err) {
         console.error("Error reading file:", err);
-        socket.write("HTTP/1.1 500 Internal Server Error\r\n\r\n");
+        socket.write("HTTP/1.1 404 Not Found\r\n\r\n");
         socket.end();
       }
     });
