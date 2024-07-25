@@ -4,8 +4,10 @@
   "description": "A basic Webserver",
   "main": "server.ts",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/server.js"
+    "build": "node esbuild.js",
+    "build-client": "node esbuild-client.js",
+    "start": "node dist/server.js",
+    "dev": "node esbuild.js && node dist/server.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +21,8 @@
   "homepage": "https://github.com/Kianabel/TSWebserver#readme",
   "devDependencies": {
     "@types/node": "^20.14.10",
+    "esbuild": "^0.23.0",
+    "glob": "^11.0.0",
     "typescript": "^5.5.3"
   },
   "dependencies": {

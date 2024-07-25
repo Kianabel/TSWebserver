@@ -1,6 +1,8 @@
 # TypeScript Express Web Server
 
-A multi"thread" WebServer written from "scratch" using TypeScript and Node.
+A multi"thread" WebServer written using TypeScript and Node.
+This projects is only for my own practice, while it might work I dont and cant guarantee it will in the future.
+That beeing said, please use it and let me know what sucks.
 
 ## Content
 
@@ -9,6 +11,8 @@ A multi"thread" WebServer written from "scratch" using TypeScript and Node.
   - [2. Install dependencies](#2-install-dependencies)
   - [3. Build and Start the Server](#3-build-and-start-the-server)
   - [4. Support](#4-support)
+  - [5. Next](#5-next)
+
 
 ## Installation
 
@@ -27,14 +31,19 @@ npm install
 
 ### 3. Build and Start the Server
 
+The easy way:
+```sh
+npm run dev
+```
+
 Build the JavaScript files using the script:
 ```sh
 npm run build
 ```
 
-or using tsc:
+or using the esbuild config file:
 ```sh
-npx tsc
+node esbuild.js
 ```
 
 Now run the server:
@@ -45,13 +54,14 @@ npm run start
 
 ### 4. Support
 
-- static page hosting
-- Multithreading
-- Reloading
-- Das wars :C
+- static page hosting (npm run build-client to compile and bundle react to static, but you might have to manually change the entry points)
+- multithreading
+- dynamic paths and client-side routing
+- reloading
+- filehosting (check /src/contentTypes.ts for info)
+- bundling/compiling with esbuild (damn that shit is fast)
 
 ### 5. Next
 
-- Currently working on other file support .js/.css
-- Working on dymanic paths
-- React/Vue/etc. Support
+- React/Vue/etc. (technically works but TypeScript is an issue)
+- hot-reloading
