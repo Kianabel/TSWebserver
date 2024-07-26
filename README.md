@@ -1,4 +1,4 @@
-# TypeScript Express Web Server
+# TypeScript Web Server
 
 A multi"thread" WebServer written using TypeScript and Node.
 This projects is only for my own practice, while it might work I dont and cant guarantee it will in the future.
