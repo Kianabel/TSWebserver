@@ -7,7 +7,8 @@
     "build": "node esbuild.js",
     "build-client": "node esbuild-client.js",
     "start": "node dist/server.js",
-    "dev": "node esbuild.js && node dist/server.js"
+    "dev": "node esbuild.js && node dist/server.js",
+    "def": "node esbuild.js && node ./src/watcher.js && node dist/server.js"
   },
   "repository": {
     "type": "git",
